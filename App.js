@@ -28,6 +28,8 @@ function Mytabs() {
   return (
     <Tab.Navigator 
     screenOptions={({ route }) => ({
+      headerMode: 'none',
+
       tabBarIcon: ({ focused, color, size }) => {
         let source;
         if (route.name === 'Trang chu') {
@@ -44,23 +46,38 @@ function Mytabs() {
       },
     })}
     tabBarOptions={{
+      headerShown: false,
       activeTintColor: 'tomato',
       inactiveTintColor: 'gray',
+      headerMode: 'none',
     }}
   >
       
-      <Stack.Screen name="Trang chu" component={Login} />
+      <Tab.Screen
+       name="Trang chu" component={HomeTab} />
       <Tab.Screen name="Thong bao" component={Thongbao} />
       <Tab.Screen name="Ca nhan" component={Canhan} />
     </Tab.Navigator>
   )
+}
+class HomeTab extends Component {
+  render() {
+    return (
+        <Stack.Navigator>
+          <Stack.Screen 
+          name="Trang chu" component={Login}  />
+        </Stack.Navigator>
+    );
+  }
 }
 class AppStack extends Component {
   render() {
     return (
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Trang chu" component={Mytabs} />
+          <Stack.Screen 
+          options={{ headerShown: false }}
+          name="Trang chu" component={Mytabs} />
           <Stack.Screen name="Thông Tin Sản Phẩm" component={Profiler} />
           <Stack.Screen name="cart" component={Details} />
           <Stack.Screen name="Setting" component={Setting} />

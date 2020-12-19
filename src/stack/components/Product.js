@@ -15,6 +15,9 @@ export default class Product extends Component {
             ]
         };
     }
+
+   
+
     renderItemWords = ({ item }) => {
         const { navigation } = this.props
         return (< WordItem navigation={navigation} item={item} />)

@@ -6,29 +6,14 @@ import {
 import { connect } from 'react-redux';
 import CartActions from './redux/cart'
 
-const cart = require('../components/shopping-cart.png')
+
 class WordItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
         }
     }
-    componentDidMount() {
-        const { navigation } = this.props
-        navigation.setOptions({
-            header: props => <View
-                style={styles.viewCart}>
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('cart')}>
-                    <Image
-                        source={cart}
-                        style={styles.textimage}
-                    />
-                </TouchableOpacity>
-            </View>
-        })
-    }
-
+   
     render() {
         const { item } = this.props
         const { uri, price, name, shope } = item
