@@ -23,7 +23,7 @@ class Details extends Component {
           <FlatList
             style={styles.container}
             data={this.props.cart}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item._id.toString()}
             renderItem={this.renderProduct}
             ListHeaderComponent={() => (<View height={5} />)}
             ListFooterComponent={() => (<View height={5} />)}

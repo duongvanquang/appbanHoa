@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image ,StyleSheet, TouchableOpacity} from 'react-native';
 import Product from './components/Product';
+const axios = require('axios')
 
 const cart = require('./components/shopping-cart.png')
 export default class Login extends Component {
@@ -24,6 +25,7 @@ export default class Login extends Component {
         </View>)
     })
 }
+
   render() {
     return (
       <View style = {styles.container}>

@@ -1,35 +1,49 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import WordItem from './WordItem';
+const axios = require('axios')
+
 
 
 export default class Product extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            words: [
-                { id: 1, uri: 'https://happyflower.vn/app/uploads/2020/11/BoHoaKhoXmas_SmallSize-600x600.jpg', price: '399', name: 'BÓ HOA KHÔ XMAS – SMALL SIZE', shope: 'Dịch vụ giao hoa'},
-                { id: 2, uri: 'https://happyflower.vn/app/uploads/2019/11/Chau_Dau_XmasTree-600x600.jpg', price: '1499', name: 'CHẬU DÂU XMAS TREE', shope: 'Dịch vụ giao hoa' },
-                {id: 3, uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnUsj0kST_fyYIOs4Jjr_WJgb_Sd8rnrhcXDlCvmoIhV-HHUOtFJCAGZ9uxA&usqp=CAc', price: '1500', name: 'BÓ HOA BABY HỒNG - KOREAN STYLE', shope: 'Dịch vụ giao hoa' },
-                {id: 4, uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfdWe5iehL72j8RP_fv2hGSHLCQDGVyFyT42Db-7levfq6nvlQ4qjZddwaCg&usqp=CAc', price: '2500', name: 'BÓ HOA BẰNG TIỀN - TÌNH YÊU TO BỰ', shope: 'Dịch vụ giao hoa' }
-            ]
+            Product:[]
+            
         };
     }
-
+    componentDidMount() {
+        const that = this
+        axios.get('https://apphoaproject.herokuapp.com/Product')
+          .then(function (response) {
+            // handle success
+            //console.log(response.data.Product);
+          
+            that.setState({Product:response.data.Product})
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });
+      
+      }
    
-
     renderItemWords = ({ item }) => {
         const { navigation } = this.props
         return (< WordItem navigation={navigation} item={item} />)
     }
     render() {
-        const { words } = this.state;
+        const { Product } = this.state;
         return (
             <FlatList
                 style={styles.containertext}
-                data={words}
+                data={Product}
                 renderItem={this.renderItemWords}
-                keyExtractor={(WordItem) => WordItem.id.toString()} 
+                keyExtractor={(WordItem) => WordItem._id.toString()} 
                 numColumns={2}/>
         );
     }
